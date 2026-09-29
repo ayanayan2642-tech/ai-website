@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LittleNest Kids - Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>LittleNest</span>
+            <small>ADMIN PANEL</small>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-section="dashboard">
+                📊 Dashboard
+            </button>
+
+            <button class="nav-item" data-section="products">
+                🛍️ Products
+            </button>
+
+            <button class="nav-item" data-section="categories">
+                📁 Categories
+            </button>
+
+            <button class="nav-item" data-section="orders">
+                📦 Orders
+            </button>
+
+            <button class="nav-item" data-section="customers">
+                👥 Customers
+            </button>
+
+            <button class="nav-item" data-section="stock">
+                📋 Stock
+            </button>
+
+            <button class="nav-item" data-section="reviews">
+                ⭐ Reviews
+            </button>
+        </nav>
+
+        <a href="index.html" class="back-store">
+            ← Back to Store
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <button id="mobileMenu" class="mobile-menu">☰</button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+
+            <div class="admin-user">
+                <div class="admin-avatar">A</div>
+                <div>
+                    <strong>Admin</strong>
+                    <small>Store Manager</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Welcome back! Here's your store overview.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">🛍️</div>
+                    <div>
+                        <span>Total Products</span>
+                        <strong id="totalProducts">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div>
+                        <span>Total Orders</span>
+                        <strong id="totalOrders">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div>
+                        <span>Customers</span>
+                        <strong id="totalCustomers">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div>
+                        <span>Total Sales</span>
+                        <strong id="totalSales">Rs 0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3>Recent Orders</h3>
+                        <button class="small-btn" data-section-btn="orders">
+                            View All
+                        </button>
+                    </div>
+
+                    <div id="recentOrders"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3>Low Stock</h3>
+                        <button class="small-btn" data-section-btn="stock">
+                            View Stock
+                        </button>
+                    </div>
+
+                    <div id="lowStockDashboard"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTS -->
+        <section id="products" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Products</h2>
+                    <p>Add, edit and delete your products.</p>
+                </div>
+
+                <button id="showProductForm" class="primary-btn">
+                    + Add Product
+                </button>
+
+            </div>
+
+
+            <!-- PRODUCT FORM -->
+
+            <div id="productFormBox" class="panel form-panel hidden">
+
+                <div class="panel-header">
+                    <h3 id="formTitle">Add New Product</h3>
+
+                    <button id="closeProductForm" class="close-btn">
+                        ×
+                    </button>
+                </div>
+
+
+                <form id="productForm">
+
+                    <input type="hidden" id="productId">
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input
+                                type="text"
+                                id="productName"
+                                placeholder="Example: Cotton Baby Suit"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Category</label>
+
+                            <select id="productCategory" required>
+
+                                <option value="">Select Category</option>
+
+                                <option>Newborn</option>
+                                <option>3–6 Months</option>
+                                <option>6–12 Months</option>
+                                <option>1–4 Years</option>
+                                <option>5–8 Years</option>
+                                <option>9–12 Years</option>
+                                <option>13–15 Years</option>
+                                <option>Boys</option>
+                                <option>Girls</option>
+                                <option>Gift Sets</option>
+                                <option>Sale</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Product Group</label>
+
+                            <select id="productGroup">
+
+                                <option value="Newborn">Newborn</option>
+                                <option value="Baby">Baby</option>
+                                <option value="Toddlers">Toddlers</option>
+                                <option value="Kids">Kids</option>
+                                <option value="Juniors">Juniors</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Gender</label>
+
+                            <select id="productGender">
+
+                                <option value="Boys">Boys</option>
+                                <option value="Girls">Girls</option>
+                                <option value="Unisex">Unisex</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Age / Size</label>
+
+                            <input
+                                type="text"
+                                id="productAge"
+                                placeholder="Example: 3–6 Months"
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Regular Price</label>
+
+                            <input
+                                type="number"
+                                id="regularPrice"
+                                placeholder="2000"
+                                min="0"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Sale Price</label>
+
+                            <input
+                                type="number"
+                                id="salePrice"
+                                placeholder="1500"
+                                min="0"
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Stock</label>
+
+                            <input
+                                type="number"
+                                id="productStock"
+                                placeholder="20"
+                                min="0"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Colors</label>
+
+                            <input
+                                type="text"
+                                id="productColors"
+                                placeholder="Pink, Blue, White"
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Sizes</label>
+
+                            <input
+                                type="text"
+                                id="productSizes"
+                                placeholder="3–6 Months, 6–9 Months"
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Product Tag</label>
+
+                            <input
+                                type="text"
+                                id="productTag"
+                                placeholder="NEW / SALE / BEST SELLER"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Product Image URL</label>
+
+                            <input
+                                type="text"
+                                id="productImage"
+                                placeholder="https://..."
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea
+                            id="productDescription"
+                            rows="4"
+                            placeholder="Product description..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="cancelProduct"
+                            class="secondary-btn"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Save Product
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- PRODUCT LIST -->
+
+            <div class="panel">
+
+                <div class="table-tools">
+
+                    <input
+                        type="text"
+                        id="productSearch"
+                        placeholder="Search products..."
+                    >
+
+                    <select id="productFilter">
+
+                        <option value="all">All Categories</option>
+                        <option>Newborn</option>
+                        <option>3–6 Months</option>
+                        <option>6–12 Months</option>
+                        <option>1–4 Years</option>
+                        <option>5–8 Years</option>
+                        <option>9–12 Years</option>
+                        <option>13–15 Years</option>
+                        <option>Boys</option>
+                        <option>Girls</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Gender</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="productsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+
+        <section id="categories" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Categories</h2>
+                    <p>Manage your product categories.</p>
+                </div>
+
+            </div>
+
+            <div class="category-grid" id="categoryList"></div>
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section id="orders" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Orders</h2>
+                    <p>Manage customer orders and status.</p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="ordersTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CUSTOMERS -->
+
+        <section id="customers" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Customers</h2>
+                    <p>Customer information from your orders.</p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>City</th>
+                                <th>Orders</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="customersTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STOCK -->
+
+        <section id="stock" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Stock Management</h2>
+                    <p>Check and update product stock.</p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Current Stock</th>
+                                <th>Status</th>
+                                <th>Update</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="stockTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REVIEWS -->
+
+        <section id="reviews" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Reviews</h2>
+                    <p>Manage customer reviews.</p>
+                </div>
+
+            </div>
+
+            <div id="reviewsList" class="reviews-list"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>
